@@ -1,0 +1,28 @@
+{
+  "name": "hd-trip",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dayjs": "^1.11.5",
+    "normalize.css": "^8.0.1",
+    "path": "^0.12.7",
+    "pinia": "^2.0.21",
+    "vant": "^3.6.1",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "less": "^4.1.3",
+    "lib-flexible": "^0.3.2",
+    "unplugin-vue-components": "^0.22.4",
+    "vite": "^3.0.7"
+  }
+}
