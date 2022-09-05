@@ -16,7 +16,7 @@
 					<span class="tip">入住</span>
 					<span class="time">{{startDay}}</span>
 				</div>
-				<div class="stay">共{{text}}晚</div>
+				<div class="stay">共{{totalCount}}晚</div>
 			</div>
 			<div class="end">
 				<div class="date">
@@ -27,22 +27,37 @@
 		</div>
 		<van-calendar v-model:show="show" type="range" @confirm="onConfirm" :round="false" color="#ff9854" />
 
+		<!--关键字/位置/民宿名  -->
 		<div class="section price-counter bottom-gray-line" @click="show=true">
 			<div class="start">价格不限</div>
 			<div class="end">人数不限</div>
 		</div>
 		<div class="section keyword  bottom-gray-line">关键字/位置/民宿名</div>
+
+
+		<!-- 热门推荐 -->
+		<div class="section hot-suggests">
+			<template v-for="(item,index) in hotSuggests" :key="index">
+				<div :style="{color:item.tagText.color,background:item.tagText.background}" class="item"> {{item.tagText.text}}
+				</div>
+			</template>
+		</div>
+
+		<!-- 搜索 -->
+		<div class="section search" @click="search">
+			<van-button round type="primary" size="large" color="#ff9854">搜索</van-button>
+		</div>
+
 	</div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
 import useCityStore from '@/stores/modules/city';
+import useHomeStore from '@/stores/modules/home'
 import { storeToRefs } from 'pinia';
 import {formatMonth,diffDayCount} from '@/utils/format-date'
 import { ref } from 'vue';
-
-
 
 // 获取城市/位置
 const router=useRouter()
@@ -71,7 +86,7 @@ newDate.setDate(date.getDate() + 1)
 const startDay=ref(formatMonth(date))
 const tomorrow=ref(formatMonth(newDate)) 
 
-const text = ref(1);
+const totalCount = ref(1);
 const show = ref(false);
 const onConfirm=(dates)=>{
 	// 选择时间范围 
@@ -79,9 +94,26 @@ const onConfirm=(dates)=>{
 	tomorrow.value=formatMonth(dates[1])
 	
 	// 总天数 
-		text.value=ref(diffDayCount(startDay,tomorrow))
+	totalCount.value=ref(diffDayCount(startDay,tomorrow))
 	// 隐藏
 	show.value=false
+}
+
+// 热门推荐
+const hotSuggestArray=useHomeStore() 
+const {hotSuggests} =storeToRefs(hotSuggestArray)
+
+//搜索 传递参数 开始日期-结束日期-当前城市
+const search=()=>{ 
+	
+	router.push({
+		path:'/search',
+		query:{
+			startDay:startDay.value,
+			tomorrow:tomorrow.value,
+			clickCity:"广东"
+		}
+	})
 }
 
 </script>
@@ -179,6 +211,7 @@ const onConfirm=(dates)=>{
 
 .hot-suggests {
 	margin: 10px 0;
+	height: auto;
 
 	.item {
 		padding: 4px 8px;

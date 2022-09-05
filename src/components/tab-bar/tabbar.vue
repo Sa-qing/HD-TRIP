@@ -24,34 +24,61 @@ const checkView = (item,index) => {
 </script>
 
 <style lang="less" scoped>
-.tab-bar {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 50px;
-	display: flex;
-	border-top: 1px;
+	.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  display: flex;
 
-	.tab-bar-item {
-		flex: 1;
-		justify-content: center;
-		align-items: center;
-		display: flex;
-		flex-direction: column;
+  border-top: 1px solid #f3f3f3;
 
-		&.active {
-			color: var(--primary-color);
-		}
+  .tab-bar-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-		.text {
-			font-size: 12px;
-			margin-top: 2px;
-		}
-
-		img {
-			width: 34px;
-		}
-	}
+    img {
+      width: 36px;
+    }
+    
+    .text {
+      font-size: 12px;
+      margin-top: 2px;
+    }
+  }
 }
+// .tab-bar {
+// 	position: fixed;
+// 	bottom: 0;
+// 	left: 0;
+// 	right: 0;
+// 	height: 50px;
+// 	display: flex;
+// 	border-top: 1px; 
+
+// 	.tab-bar-item {
+// 		flex: 1;
+// 		justify-content: center;
+// 		align-items: center;
+// 		display: flex;
+// 		flex-direction: column;
+
+// 		&.active {
+// 			color: var(--primary-color);
+// 		}
+
+// 		.text {
+// 			font-size: 12px;
+// 			margin-top: 2px;
+// 		}
+
+// 		img {
+// 			width: 34px;
+// 		}
+// 	}
+// }
 </style>

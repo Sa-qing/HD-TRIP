@@ -25,6 +25,10 @@ const routes=[
 	{
 		path:'/city',
 		component:()=>import("@/views/city/cityInfo.vue") 
+	},
+	{
+		path:'/search',
+		component:()=>import("@/views/search/searchInfo.vue")
 	}
 ]
 const router=createRouter({
